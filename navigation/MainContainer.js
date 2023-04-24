@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -9,10 +9,12 @@ import { BlurView } from 'expo-blur';
 //Screens
 import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import CartScreen from './screens/CartScreen'
 
 //Screen names
 const homeName = "Início";
 const profileName = 'Perfil';
+const cartName = 'Carrinho';
 
 const Tab =createBottomTabNavigator();
 
@@ -22,10 +24,16 @@ export default function MainContainer(){
             <Tab.Navigator
             initialRouteName={homeName}
             screenOptions={({route}) => ({
-                activeTintColor: '#000',
-                inactiveTintColor: '#fff',
-                tabBarStyle:{ backgroundColor: 'black'},
-                labelStyle: { paddingBottom: 10, fontSize: 10, },
+                tabBarActiveTintColor: '#000',
+                tabBarInactiveTintColor: '#fff',
+                headerShown: false,
+                tabBarStyle:{ 
+                    backgroundColor: 'black',
+                    position: 'absolute',
+                    borderBottomColor: 'white',
+                    border: 2,
+                },
+                tabBarShowLabel: false,
                 tabBarIcon: ({focused, color, size}) => {
                     let iconName;
                     let rn = route.name;
@@ -34,14 +42,17 @@ export default function MainContainer(){
                         iconName = focused ? 'home' : 'home-outline'
                     } else if (rn === profileName) {
                         iconName = focused ? 'person-circle' : 'person-circle-outline'
+                    }  else if (rn === cartName) {
+                        iconName = focused ? 'cart' : 'cart-outline'
                     }
 
                     return <Ionicons name={iconName} size={size} color={'#CB0303'}/>
                 }      
             })}> 
 
-                <Tab.Screen name={homeName} component={HomeScreen}/>
-                <Tab.Screen name={profileName} component={HomeScreen}/>  
+                <Tab.Screen name={homeName} component={HomeScreen} options={{unmountOnBlur: true}}/>
+                <Tab.Screen name={profileName} component={ProfileScreen} options={{unmountOnBlur: true,}}/>
+                <Tab.Screen name={cartName} component={CartScreen} options={{unmountOnBlur: true}}/>    
                  </Tab.Navigator>
 
 

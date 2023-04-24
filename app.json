@@ -2,7 +2,7 @@
   "expo": {
     "name": "suplementar-distribuidora",
     "slug": "suplementar-distribuidora",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.franquiadeapps.suplementar"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f86fca9f-4b61-4904-ba82-f4739787404c"
+      }
     }
   }
 }
